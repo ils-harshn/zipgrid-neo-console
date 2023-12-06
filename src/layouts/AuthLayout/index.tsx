@@ -1,5 +1,5 @@
 import { AuthLayoutType } from "./index.type";
-import "./index.css";
+import "./index.scss";
 
 const AuthLayout: React.FC<AuthLayoutType> = ({ children }) => {
   return (
