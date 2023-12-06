@@ -1,0 +1,22 @@
+.login-remember-me {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  div.login-remember-me-left,
+  div.login-remember-me-right {
+    height: 20px;
+    display: flex;
+    align-items: center;
+  }
+
+  div.login-remember-me-left label {
+    margin-left: 5px;
+  }
+}
+
+input.login-email,
+input.login-password {
+  width: calc(100% - 22px);
+  margin-bottom: 20px;
+}
