@@ -1,0 +1,14 @@
+.text-input {
+  height: 20px;
+  padding: 10px;
+  border-radius: 8px;
+  outline: none;
+}
+
+.text-input.primary {
+  border: 1px solid #dddddd;
+}
+
+.text-input.full {
+  width: 100%;
+}
