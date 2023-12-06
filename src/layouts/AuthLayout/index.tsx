@@ -21,7 +21,7 @@ const AuthLayout: React.FC<AuthLayoutType> = ({ children, formTitle }) => {
             <div className="auth-form-company-name">Zipgrid Neo Console</div>
             <hr className="auth-form-seperator" />
 
-            <div className="auth-group-inputs"></div>
+            <div className="auth-group-inputs">{children}</div>
           </form>
         </div>
       </div>
