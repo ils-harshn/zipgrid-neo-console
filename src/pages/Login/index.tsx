@@ -19,6 +19,7 @@ const Login: React.FC = () => {
         type="text"
         placeholder="Username"
         width="initial"
+        autoComplete="off"
       />
       <TextInput
         className="login-password"
