@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import Button from "../../components/Buttons";
 import { CheckBoxInput, TextInput } from "../../components/Inputs";
 import Label from "../../components/Labels";
@@ -7,11 +8,18 @@ import routes from "../../router/routes";
 import "./login.scss";
 
 const Login: React.FC = () => {
+  const navigate = useNavigate();
+
+  const onSumbitForm = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    navigate(routes.HOME);
+  };
+
   return (
     <AuthLayout
       formTitle="Login To"
       form={{
-        action: "#",
+        onSubmit: onSumbitForm,
       }}
     >
       <TextInput
@@ -19,6 +27,7 @@ const Login: React.FC = () => {
         type="text"
         placeholder="Username"
         width="initial"
+        autoComplete="off"
       />
       <TextInput
         className="login-password"
