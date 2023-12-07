@@ -12,7 +12,7 @@ const Login: React.FC = () => {
       <TextInput
         className="login-email"
         type="text"
-        placeholder="Email Address"
+        placeholder="Username"
         width="initial"
       />
       <TextInput
