@@ -13,7 +13,7 @@ const A: React.FC<AType> = ({
 }) => {
   return (
     <Link
-      className={getClassName("link", className, size, varient, underline)}
+    className={getClassName("link", className, size, varient, underline)}
       {...props}
     >
       {children}
