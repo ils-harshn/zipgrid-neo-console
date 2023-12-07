@@ -38,6 +38,7 @@
   overflow: hidden;
 
   .checkbox-input {
+    cursor: pointer;
     webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -62,6 +63,11 @@
 
     &.primary {
       border: 1px solid #dddddd;
+
+      &:focus {
+        outline: none;
+        border: 1px solid #c3c3c3;
+      }
     }
   }
 

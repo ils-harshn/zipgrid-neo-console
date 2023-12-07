@@ -1,7 +1,9 @@
+import Button from "../../components/Buttons";
 import { CheckBoxInput, TextInput } from "../../components/Inputs";
 import Label from "../../components/Labels";
 import A from "../../components/Links";
 import { AuthLayout } from "../../layouts";
+import routes from "../../router/routes";
 import "./login.scss";
 
 const Login: React.FC = () => {
@@ -25,9 +27,11 @@ const Login: React.FC = () => {
           <Label>Remember Me</Label>
         </div>
         <div className="login-remember-me-right">
-          <A to="">Forgot Password</A>
+          <A to={routes.RESET_PASSWORD}>Forgot Password</A>
         </div>
       </div>
+
+      <Button type="submit">Login</Button>
     </AuthLayout>
   );
 };
