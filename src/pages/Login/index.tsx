@@ -8,7 +8,12 @@ import "./login.scss";
 
 const Login: React.FC = () => {
   return (
-    <AuthLayout formTitle="Login To">
+    <AuthLayout
+      formTitle="Login To"
+      form={{
+        action: "#",
+      }}
+    >
       <TextInput
         className="login-email"
         type="text"

@@ -3,11 +3,16 @@ import { TextInput } from "../../components/Inputs";
 import A from "../../components/Links";
 import { AuthLayout } from "../../layouts";
 import routes from "../../router/routes";
-import "./resetpassword.scss"
+import "./resetpassword.scss";
 
 const ResetPassword: React.FC = () => {
   return (
-    <AuthLayout formTitle="Reset Password For">
+    <AuthLayout
+      formTitle="Reset Password For"
+      form={{
+        action: "#",
+      }}
+    >
       <TextInput
         className="login-email"
         type="text"
