@@ -1,0 +1,14 @@
+.link {
+  &.primary {
+    letter-spacing: 0px;
+    color: #999999;
+  }
+
+  &.medium {
+    font-size: 14px;
+  }
+
+  &.underline-none {
+    text-decoration: none;
+  }
+}
