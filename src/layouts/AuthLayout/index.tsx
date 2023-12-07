@@ -2,7 +2,11 @@ import { AuthLayoutType } from "./index.type";
 import "./index.scss";
 import { LogoSvg } from "../../assets/svgs";
 
-const AuthLayout: React.FC<AuthLayoutType> = ({ children, formTitle }) => {
+const AuthLayout: React.FC<AuthLayoutType> = ({
+  children,
+  formTitle,
+  form,
+}) => {
   return (
     <div id="auth-layout">
       <div className="auth-two-column">
@@ -16,7 +20,7 @@ const AuthLayout: React.FC<AuthLayoutType> = ({ children, formTitle }) => {
           </div>
         </div>
         <div className="auth-two">
-          <form action="#">
+          <form action="#" {...form}>
             <div className="auth-form-title">{formTitle}</div>
             <div className="auth-form-company-name">Zipgrid Neo Console</div>
             <hr className="auth-form-seperator" />
