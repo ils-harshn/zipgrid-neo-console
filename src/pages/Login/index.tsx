@@ -41,7 +41,7 @@ const Login: React.FC = () => {
           <Label>Remember Me</Label>
         </div>
         <div className="login-remember-me-right">
-          <A to={routes.RESET_PASSWORD}>Forgot Password</A>
+          <A to={routes.RESET_PASSWORD}>Forgot Password?</A>
         </div>
       </div>
 
