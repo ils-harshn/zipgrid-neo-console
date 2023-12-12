@@ -8,7 +8,6 @@ const Button: React.FC<ButtonType> = ({
   varient = "primary",
   width = "full",
   textcase = "upper-case",
-  active = false,
   loading = false,
   ...props
 }) => {
@@ -18,7 +17,6 @@ const Button: React.FC<ButtonType> = ({
         "button",
         className,
         varient,
-        active ? "active" : "",
         width,
         textcase
       )}

@@ -20,8 +20,10 @@
   }
 }
 
-input.login-email,
-input.login-password {
+input.login-input {
   width: calc(100% - 22px);
-  margin-bottom: 20px;
+}
+
+.login-error {
+  margin-bottom: 2px;
 }
