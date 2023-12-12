@@ -7,4 +7,8 @@ type AType = LinkProps & {
   underline?: "underline-none" | "underline";
 };
 
+export type AWithArrowType = AType & {
+  direction?: "left" | "right";
+};
+
 export type { AType };

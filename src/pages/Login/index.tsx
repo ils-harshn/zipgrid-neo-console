@@ -8,8 +8,12 @@ import "./login.scss";
 import { useFormik } from "formik";
 import validationSchema, { initialValues } from "../../formSchemas/loginSchema";
 import { handleTextChange } from "../../formSchemas/helpers/inputHelpers";
+import Error from "../../components/Errors";
+import { useNavigate } from "react-router-dom";
 
 const Login: React.FC = () => {
+  const navigate = useNavigate();
+
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: validationSchema,
@@ -18,7 +22,9 @@ const Login: React.FC = () => {
       console.log({
         username: values.username,
         password: values.password,
+        rememberMe: values.rememberMe,
       });
+      navigate(routes.HOME);
     },
   });
 
@@ -30,7 +36,7 @@ const Login: React.FC = () => {
       }}
     >
       <TextInput
-        className="login-email"
+        className="login-input"
         type="text"
         placeholder="Username"
         width="initial"
@@ -39,8 +45,11 @@ const Login: React.FC = () => {
         onChange={(e) => handleTextChange(e, formik)}
         value={formik.values.username}
       />
+      <Error className="login-error">
+        {formik.touched.username ? formik.errors.username : ""}
+      </Error>
       <TextInput
-        className="login-password"
+        className="login-input"
         type="password"
         placeholder="Password"
         width="initial"
@@ -48,6 +57,9 @@ const Login: React.FC = () => {
         onChange={(e) => handleTextChange(e, formik)}
         value={formik.values.password}
       />
+      <Error className="login-error">
+        {formik.touched.password ? formik.errors.password : ""}
+      </Error>
       <div className="login-remember-me">
         <div className="login-remember-me-left">
           <CheckBoxInput
