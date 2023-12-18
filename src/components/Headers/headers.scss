@@ -1,0 +1,39 @@
+header.header {
+  height: 80px;
+  background-color: #ffffff;
+  box-shadow: 0px 1px 6px #22222229;
+  display: flex;
+  justify-content: center;
+
+  main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    max-width: 1340px;
+  }
+
+  .header-details {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    cursor: pointer;
+
+    .title {
+      font-weight: 600;
+      font-size: 18px;
+      letter-spacing: 0px;
+      color: #888888;
+    }
+    .seprator {
+      border-right: 1px solid #cccccc;
+      height: 100%;
+      margin: 0 20px 0 20px;
+    }
+
+    .settings {
+      width: 22px;
+      height: 24px;
+    }
+  }
+}
