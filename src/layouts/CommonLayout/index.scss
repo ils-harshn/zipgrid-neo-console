@@ -1,0 +1,10 @@
+.cl-container {
+  display: flex;
+  justify-content: center;
+
+  main {
+    width: 90%;
+    min-height: calc(100vh - 80px);
+    max-width: 1340px;
+  }
+}

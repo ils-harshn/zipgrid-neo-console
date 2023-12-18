@@ -1,5 +1,7 @@
+import { CommonLayout } from "../../layouts";
+
 const Home: React.FC = () => {
-  return <div>Home</div>;
+  return <CommonLayout />;
 };
 
 export default Home;

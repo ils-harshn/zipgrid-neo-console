@@ -1,3 +1,4 @@
 import AuthLayout from "./AuthLayout";
+import CommonLayout from "./CommonLayout";
 
-export { AuthLayout };
+export { AuthLayout, CommonLayout };
