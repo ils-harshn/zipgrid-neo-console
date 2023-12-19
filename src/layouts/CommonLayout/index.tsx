@@ -1,4 +1,5 @@
 import Header from "../../components/Headers";
+import Navbar from "../../components/Navbar";
 import "./index.scss";
 
 const CommonLayout: React.FC = () => {
@@ -6,7 +7,9 @@ const CommonLayout: React.FC = () => {
     <>
       <Header title="Treasure Town Society"></Header>
       <div className="cl-container">
-        <main>Container</main>
+        <main>
+          <Navbar className="cl-navbar" />
+        </main>
       </div>
     </>
   );
