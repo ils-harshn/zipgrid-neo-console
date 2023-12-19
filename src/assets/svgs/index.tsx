@@ -3,5 +3,6 @@ import { ReactComponent as CheckboxSvg } from "./Checkbox.svg";
 import { ReactComponent as ArrowSvg } from "./Arrow.svg";
 import { ReactComponent as HeaderLogoSvg } from "./HeaderLogo.svg";
 import { ReactComponent as SettingsSvg } from "./Settings.svg";
+import { ReactComponent as HomeSvg } from "./Home.svg";
 
-export { LogoSvg, CheckboxSvg, ArrowSvg, HeaderLogoSvg, SettingsSvg };
+export { LogoSvg, CheckboxSvg, ArrowSvg, HeaderLogoSvg, SettingsSvg, HomeSvg };
