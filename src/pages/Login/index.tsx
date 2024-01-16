@@ -9,15 +9,24 @@ import { useFormik } from "formik";
 import validationSchema, { initialValues } from "../../formSchemas/loginSchema";
 import { handleTextChange } from "../../formSchemas/helpers/inputHelpers";
 import Error from "../../components/Errors";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { useAuthLoginMutation } from "../../api/auth/queryHooks";
+import { AuthLoginResType } from "../../api/auth/response.types";
+import webTokenStorer from "../../webStorer";
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
+  const data = webTokenStorer.getToken();
 
   const { mutate, isLoading } = useAuthLoginMutation({
-    onSuccess: (data: any) => {
-      console.log(data);
+    onSuccess: (data: AuthLoginResType) => {
+      webTokenStorer.saveToken(
+        data.access_token,
+        data.default_community.community_id,
+        data.default_community.blocks?.[0].houseUniqueId || 0,
+        data.user_role,
+        formik.values.rememberMe
+      );
       navigate(routes.HOME);
     },
     onError: () => {
@@ -33,6 +42,14 @@ const Login: React.FC = () => {
       mutate({ ...values });
     },
   });
+
+  if (
+    data?.house_unique_id &&
+    data?.society_id &&
+    data?.user_role &&
+    data?.access_token
+  )
+    return <Navigate to={routes.HOME} />;
 
   return (
     <AuthLayout
