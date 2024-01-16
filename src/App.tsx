@@ -1,12 +1,16 @@
+import { Provider } from "react-redux";
 import "./App.css";
 import BaseQueryProvider from "./api/provider";
 import Router from "./router/Router";
+import store from "./redux/store";
 
 const App: React.FC = () => {
   return (
-    <BaseQueryProvider>
-      <Router />
-    </BaseQueryProvider>
+    <Provider store={store}>
+      <BaseQueryProvider>
+        <Router />
+      </BaseQueryProvider>
+    </Provider>
   );
 };
 

@@ -14,3 +14,17 @@ export const authLoginReq = async (email: string, password: string) => {
   });
   return response.data;
 };
+
+export const authReloginReq = async (
+  society_id: string,
+  house_unique_id: string,
+  user_type: string
+) => {
+  const response = await api.post(API_ENDPOINTS.RELOGIN(), {
+    community_id: society_id,
+    house_unique_id: house_unique_id,
+    user_type: user_type,
+    ip: "ip",
+  });
+  return response;
+};

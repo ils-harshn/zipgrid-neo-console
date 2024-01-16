@@ -1,5 +1,6 @@
 const AUTH_QUERY_KEYS = {
   AUTH_LOGIN: "AUTH_LOGIN",
+  AUTH_RELOGIN: "AUTH_RELOGIN",
 };
 
 export default AUTH_QUERY_KEYS;

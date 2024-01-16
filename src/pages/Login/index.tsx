@@ -11,13 +11,21 @@ import { handleTextChange } from "../../formSchemas/helpers/inputHelpers";
 import Error from "../../components/Errors";
 import { useNavigate } from "react-router-dom";
 import { useAuthLoginMutation } from "../../api/auth/queryHooks";
+import { AuthLoginResType } from "../../api/auth/response.types";
+import webTokenStorer from "../../webStorer";
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
 
   const { mutate, isLoading } = useAuthLoginMutation({
-    onSuccess: (data: any) => {
-      console.log(data);
+    onSuccess: (data: AuthLoginResType) => {
+      webTokenStorer.saveToken(
+        data.access_token,
+        data.default_community.community_id,
+        data.default_community.blocks?.[0].houseUniqueId || 0,
+        data.user_role,
+        formik.values.rememberMe
+      );
       navigate(routes.HOME);
     },
     onError: () => {
