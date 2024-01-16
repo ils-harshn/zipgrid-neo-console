@@ -10,21 +10,27 @@ import validationSchema, { initialValues } from "../../formSchemas/loginSchema";
 import { handleTextChange } from "../../formSchemas/helpers/inputHelpers";
 import Error from "../../components/Errors";
 import { useNavigate } from "react-router-dom";
+import { useAuthLoginMutation } from "../../api/auth/queryHooks";
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
+
+  const { mutate, isLoading } = useAuthLoginMutation({
+    onSuccess: (data: any) => {
+      console.log(data);
+      navigate(routes.HOME);
+    },
+    onError: () => {
+      formik.setErrors({ email: "User not found!" });
+    },
+  });
 
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: validationSchema,
     validateOnChange: true,
     onSubmit: (values) => {
-      console.log({
-        username: values.username,
-        password: values.password,
-        rememberMe: values.rememberMe,
-      });
-      navigate(routes.HOME);
+      mutate({ ...values });
     },
   });
 
@@ -38,15 +44,15 @@ const Login: React.FC = () => {
       <TextInput
         className="login-input"
         type="text"
-        placeholder="Username"
+        placeholder="Email"
         width="initial"
         autoComplete="off"
-        name="username"
+        name="email"
         onChange={(e) => handleTextChange(e, formik)}
-        value={formik.values.username}
+        value={formik.values.email}
       />
       <Error className="login-error">
-        {formik.touched.username ? formik.errors.username : ""}
+        {formik.touched.email ? formik.errors.email : ""}
       </Error>
       <TextInput
         className="login-input"
@@ -74,8 +80,11 @@ const Login: React.FC = () => {
         </div>
       </div>
 
-      <Button type="submit" disabled={!formik.dirty || !formik.isValid}>
-        Login
+      <Button
+        type="submit"
+        disabled={!formik.dirty || !formik.isValid || isLoading}
+      >
+        {isLoading ? "Please wait..." : "Login"}
       </Button>
     </AuthLayout>
   );
