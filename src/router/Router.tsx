@@ -12,6 +12,7 @@ const Router: React.FC = () => {
         <Route path={routes.LOGIN} element={<Login />} />
         <Route path={routes.RESET_PASSWORD} element={<ResetPassword />} />
         <Route element={<ProtectedRoute />}>
+          <Route index element={<Home />} />
           <Route path={routes.HOME} element={<Home />} />
         </Route>
         <Route path="*" element={<h2>No Page Found</h2>} />
