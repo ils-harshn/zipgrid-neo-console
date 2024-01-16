@@ -1,8 +1,8 @@
-import { AuthLoginResType } from "../../../api/auth/response.types";
+import { AuthReloginResType } from "../../../api/auth/response.types";
 
 type SET_DATA_FOR_AUTH_LOGIN = {
   type: "SET_DATA_FOR_AUTH_LOGIN";
-  data: AuthLoginResType;
+  data: AuthReloginResType;
 };
 
 type AuthActionTypes = SET_DATA_FOR_AUTH_LOGIN;

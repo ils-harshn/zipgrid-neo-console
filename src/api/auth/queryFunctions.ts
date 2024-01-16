@@ -26,5 +26,5 @@ export const authReloginReq = async (
     user_type: user_type,
     ip: "ip",
   });
-  return response;
+  return response.data;
 };

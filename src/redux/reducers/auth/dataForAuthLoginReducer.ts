@@ -1,7 +1,7 @@
-import { AuthLoginResType } from "../../../api/auth/response.types";
+import { AuthReloginResType } from "../../../api/auth/response.types";
 import AuthActionTypes from "../../actions/auth/index.types";
 
-type StateType = AuthLoginResType | null;
+type StateType = AuthReloginResType | null;
 
 function dataForAuthLoginReducer(
   state: StateType = null,
