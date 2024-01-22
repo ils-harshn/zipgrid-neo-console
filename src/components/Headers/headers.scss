@@ -24,6 +24,10 @@ header.header {
       font-size: 18px;
       letter-spacing: 0px;
       color: #888888;
+
+      &:hover {
+        color: #cf001c;
+      }
     }
     .seprator {
       border-right: 1px solid #cccccc;
@@ -34,6 +38,14 @@ header.header {
     .settings {
       width: 22px;
       height: 24px;
+
+      svg {
+        fill: #888;
+      }
+
+      &:hover svg {
+        fill: #cf001c;
+      }
     }
   }
 }
