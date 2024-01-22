@@ -1,5 +1,5 @@
 import { useMutation } from "react-query";
-import { authLoginReq, authReloginReq } from "./queryFunctions";
+import { authLoginReq, authLogoutReq, authReloginReq } from "./queryFunctions";
 import AUTH_QUERY_KEYS from "./queryKeys";
 import { LoginPayloadType, ReloginPayloadType } from "./payload.types";
 
@@ -20,5 +20,12 @@ export const useAuthReloginMutation = (config = {}) =>
         payload.user_type
       ),
     mutationKey: [AUTH_QUERY_KEYS.AUTH_RELOGIN],
+    ...config,
+  });
+
+export const useAuthLogoutMutation = (config = {}) =>
+  useMutation({
+    mutationFn: () => authLogoutReq(),
+    mutationKey: [AUTH_QUERY_KEYS.AUTH_LOGOUT],
     ...config,
   });

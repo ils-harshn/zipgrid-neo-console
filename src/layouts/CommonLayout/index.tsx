@@ -10,7 +10,9 @@ const CommonLayout: React.FC = () => {
 
   return (
     <>
-      <Header title={user_data.default_community.community_name}></Header>
+      <Header
+        title={`${user_data.default_community.community_name} - ${user_data.default_community.blocks.block_name} ${user_data.default_community.blocks.flat_no}`}
+      ></Header>
       <div className="cl-container">
         <main>
           <Navbar className="cl-navbar" />

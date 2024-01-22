@@ -5,7 +5,7 @@ export const authLoginReq = async (email: string, password: string) => {
   const response = await api.post(API_ENDPOINTS.LOGIN(), {
     email: email,
     password: password,
-    ip: "ip",
+    ip: "0.0.1",
     device_type: "device_type",
     os_version: "os_version",
     app_version: "app_version",
@@ -24,7 +24,12 @@ export const authReloginReq = async (
     community_id: society_id,
     house_unique_id: house_unique_id,
     user_type: user_type,
-    ip: "ip",
+    ip: "0.0.1",
   });
   return response.data;
+};
+
+export const authLogoutReq = async () => {
+  const response = await api.put(API_ENDPOINTS.LOGOUT());
+  return response;
 };
