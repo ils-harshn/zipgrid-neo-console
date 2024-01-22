@@ -4,5 +4,14 @@ import { ReactComponent as ArrowSvg } from "./Arrow.svg";
 import { ReactComponent as HeaderLogoSvg } from "./HeaderLogo.svg";
 import { ReactComponent as SettingsSvg } from "./Settings.svg";
 import { ReactComponent as HomeSvg } from "./Home.svg";
+import { ReactComponent as CrossSvg } from "./Cross.svg";
 
-export { LogoSvg, CheckboxSvg, ArrowSvg, HeaderLogoSvg, SettingsSvg, HomeSvg };
+export {
+  LogoSvg,
+  CheckboxSvg,
+  ArrowSvg,
+  HeaderLogoSvg,
+  SettingsSvg,
+  HomeSvg,
+  CrossSvg,
+};
