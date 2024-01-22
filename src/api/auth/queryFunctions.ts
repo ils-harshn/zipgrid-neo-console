@@ -28,3 +28,8 @@ export const authReloginReq = async (
   });
   return response.data;
 };
+
+export const authLogoutReq = async () => {
+  const response = await api.put(API_ENDPOINTS.LOGOUT());
+  return response;
+};

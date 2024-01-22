@@ -9,6 +9,10 @@ import {
 import { CrossSvg } from "../../assets/svgs";
 import Button from "../Buttons";
 import { useSelector } from "react-redux";
+import { useAuthLogoutMutation } from "../../api/auth/queryHooks";
+import webTokenStorer from "../../webStorer";
+import { useNavigate } from "react-router-dom";
+import routes from "../../router/routes";
 
 const ModalWrapper: React.FC<ModalWrapperType> = ({
   isOpen,
@@ -46,6 +50,18 @@ export const SettingsModal: React.FC<SettingsModalType> = ({
   onClickOutside,
   onClickClose,
 }) => {
+  const navigate = useNavigate();
+  const { mutate, isLoading } = useAuthLogoutMutation({
+    onSuccess: () => {
+      webTokenStorer.removeToken();
+      navigate(routes.LOGIN);
+    },
+    onError: () => {
+      alert("Someting went wrong, press ok to reload page");
+      window.location.reload();
+    },
+  });
+
   const user_data = useSelector(
     (reducer: any) => reducer.dataForAuthLoginReducer
   );
@@ -63,7 +79,13 @@ export const SettingsModal: React.FC<SettingsModalType> = ({
             {user_data.default_community.community_name}
           </div>
           <div className="logout-button-container">
-            <Button textcase="none-text-case">Logout</Button>
+            <Button
+              textcase="none-text-case"
+              onClick={() => mutate()}
+              disabled={isLoading}
+            >
+              {isLoading ? "Wait.." : "Logout"}
+            </Button>
           </div>
         </div>
       </ModalWrapper>
