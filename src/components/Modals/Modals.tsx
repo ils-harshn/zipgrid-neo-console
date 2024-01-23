@@ -13,6 +13,8 @@ import { useAuthLogoutMutation } from "../../api/auth/queryHooks";
 import webTokenStorer from "../../webStorer";
 import { useNavigate } from "react-router-dom";
 import routes from "../../router/routes";
+import Select from "../Selects/Selects";
+import { useState } from "react";
 
 const ModalWrapper: React.FC<ModalWrapperType> = ({
   isOpen,
@@ -43,14 +45,110 @@ const ModalHeader: React.FC<ModalHeaderType> = ({ title, onClickClose }) => {
   );
 };
 
-const ModalSeperator = () => <div className="modal-seperator"></div>;
+const ModalSeperator: React.FC = () => <div className="modal-seperator"></div>;
 
-export const SettingsModal: React.FC<SettingsModalType> = ({
-  isOpen,
-  onClickOutside,
-  onClickClose,
-}) => {
+const ChangeCommunity = () => {
+  const [loading, setLoading] = useState(false);
+  const user_data = useSelector(
+    (reducer: any) => reducer.dataForAuthLoginReducer
+  );
+
+  const [selectedCommunity, changeSelectedCommunity] = useState({
+    label: user_data.default_community.community_name,
+    value: user_data.default_community.community_id,
+  });
+
+  const [blocks, setBlocks] = useState(
+    user_data.all_community_details.find(
+      (item: any) => item.community_id === selectedCommunity.value
+    ).blocks
+  );
+
+  const [selectedBlock, setSelectedBlock] = useState<any>({
+    label: `${user_data.default_community.blocks.block_name} - ${user_data.default_community.blocks.flat_no}`,
+    value: user_data.default_community.blocks.houseUniqueId,
+  });
+
+  const handleSubmit = () => {
+    setLoading(true);
+    webTokenStorer.changeCommunity(
+      selectedCommunity.value,
+      selectedBlock.value
+    );
+    window.location.reload();
+  };
+
+  return (
+    <>
+      <div className="change-communtiy-button">
+        <h4>Change Community</h4>
+        <Button onClick={handleSubmit} disabled={loading}>
+          {loading ? "Wait" : "Save"}
+        </Button>
+      </div>
+      <div className="default-community-select">
+        <div className="title">Select Community</div>
+        <div className="selector">
+          <Select
+            placeholder="Select Society"
+            options={user_data.all_community_details.map((item: any) => ({
+              label: item.community_name,
+              value: item.community_id,
+            }))}
+            defaultSelected={{
+              label: user_data.default_community.community_name,
+              value: user_data.default_community.community_id,
+            }}
+            onSelect={(data: any) => {
+              let newBlocks = user_data.all_community_details.find(
+                (item: any) => item.community_id === data.value
+              ).blocks;
+              changeSelectedCommunity(data);
+              setBlocks(newBlocks);
+
+              if (data.value === user_data.default_community.community_id) {
+                setSelectedBlock({
+                  label: `${user_data.default_community.blocks.block_name} - ${user_data.default_community.blocks.flat_no}`,
+                  value: user_data.default_community.blocks.houseUniqueId,
+                });
+              } else {
+                setSelectedBlock({
+                  label: `${newBlocks?.[0].block_name} - ${newBlocks?.[0].flat_no}`,
+                  value: newBlocks?.[0].houseUniqueId,
+                });
+              }
+            }}
+          />
+        </div>
+      </div>
+      <div className="default-block-select">
+        <div className="title">Select Block</div>
+        <div className="selector">
+          <Select
+            key={blocks?.[0].houseUniqueId}
+            placeholder="Select Block"
+            options={blocks.map((item: any) => ({
+              label: `${item.block_name} - ${item.flat_no}`,
+              value: item.houseUniqueId,
+            }))}
+            defaultSelected={selectedBlock}
+            onSelect={(data: any) => {
+              setSelectedBlock(data);
+            }}
+          />
+        </div>
+      </div>
+    </>
+  );
+};
+
+const LogoutUser: React.FC = () => {
   const navigate = useNavigate();
+
+  const user_data = useSelector(
+    (reducer: any) => reducer.dataForAuthLoginReducer
+  );
+
   const { mutate, isLoading } = useAuthLogoutMutation({
     onSuccess: () => {
       webTokenStorer.removeToken();
@@ -62,9 +160,30 @@ export const SettingsModal: React.FC<SettingsModalType> = ({
     },
   });
 
-  const user_data = useSelector(
-    (reducer: any) => reducer.dataForAuthLoginReducer
+  return (
+    <>
+      <div className="logout-from-community">
+        {user_data.default_community.community_name}
+      </div>
+      <div className="logout-button-container">
+        <Button
+          textcase="none-text-case"
+          onClick={() => mutate()}
+          disabled={isLoading}
+          varient="secondary"
+        >
+          {isLoading ? "Wait.." : "Logout"}
+        </Button>
+      </div>
+    </>
   );
+};
+
+export const SettingsModal: React.FC<SettingsModalType> = ({
+  isOpen,
+  onClickOutside,
+  onClickClose,
+}) => {
   return (
     <>
       <ModalWrapper
@@ -74,19 +193,12 @@ export const SettingsModal: React.FC<SettingsModalType> = ({
       >
         <ModalHeader onClickClose={onClickClose} title="Settings" />
         <ModalSeperator />
+        <div className="change-community">
+          <ChangeCommunity />
+        </div>
+        <ModalSeperator />
         <div className="logout">
-          <div className="logout-from-community">
-            {user_data.default_community.community_name}
-          </div>
-          <div className="logout-button-container">
-            <Button
-              textcase="none-text-case"
-              onClick={() => mutate()}
-              disabled={isLoading}
-            >
-              {isLoading ? "Wait.." : "Logout"}
-            </Button>
-          </div>
+          <LogoutUser />
         </div>
       </ModalWrapper>
     </>

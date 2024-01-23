@@ -39,6 +39,19 @@ const webTokenStorer = {
   checkRememberMe: () => {
     return localStorage.getItem(TOKEN_KEY) ? true : false;
   },
+
+  changeCommunity: function (society_id: number, house_unique_id: number) {
+    const data = this.getToken();
+    if (data) {
+      const storer = getStorer(this.checkRememberMe());
+      data.society_id = society_id;
+      data.house_unique_id = house_unique_id;
+      storer.setItem(TOKEN_KEY, JSON.stringify(data));
+      console.log("Token updated:", data);
+    } else {
+      console.error("Token not found");
+    }
+  },
 };
 
 export default webTokenStorer;

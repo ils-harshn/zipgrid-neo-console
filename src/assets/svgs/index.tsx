@@ -5,6 +5,8 @@ import { ReactComponent as HeaderLogoSvg } from "./HeaderLogo.svg";
 import { ReactComponent as SettingsSvg } from "./Settings.svg";
 import { ReactComponent as HomeSvg } from "./Home.svg";
 import { ReactComponent as CrossSvg } from "./Cross.svg";
+import { ReactComponent as DownMenuSvg } from "./DownMenu.svg";
+import { ReactComponent as UpMenuSvg } from "./UpMenu.svg";
 
 export {
   LogoSvg,
@@ -14,4 +16,6 @@ export {
   SettingsSvg,
   HomeSvg,
   CrossSvg,
+  DownMenuSvg,
+  UpMenuSvg,
 };
