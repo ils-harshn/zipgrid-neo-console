@@ -13,6 +13,7 @@ import { useAuthLogoutMutation } from "../../api/auth/queryHooks";
 import webTokenStorer from "../../webStorer";
 import { useNavigate } from "react-router-dom";
 import routes from "../../router/routes";
+import Select from "../Selects/Selects";
 
 const ModalWrapper: React.FC<ModalWrapperType> = ({
   isOpen,
@@ -65,6 +66,7 @@ export const SettingsModal: React.FC<SettingsModalType> = ({
   const user_data = useSelector(
     (reducer: any) => reducer.dataForAuthLoginReducer
   );
+
   return (
     <>
       <ModalWrapper
@@ -74,6 +76,26 @@ export const SettingsModal: React.FC<SettingsModalType> = ({
       >
         <ModalHeader onClickClose={onClickClose} title="Settings" />
         <ModalSeperator />
+        <div
+          style={{
+            padding: "10px",
+          }}
+        >
+          <Select
+            placeholder="Select Society"
+            options={user_data.all_community_details.map((item: any) => ({
+              label: item.community_name,
+              value: item.community_id,
+            }))}
+            defaultSelected={{
+              label: user_data.default_community.community_name,
+              value: user_data.default_community.community_id,
+            }}
+            onSelect={(data: any) => {
+              console.log(data);
+            }}
+          />
+        </div>
         <div className="logout">
           <div className="logout-from-community">
             {user_data.default_community.community_name}
