@@ -69,9 +69,41 @@
 .settings-modal-overlay {
   .modal {
     min-width: 320px;
+    width: 380px;
+
+    .change-community {
+      padding: 12px;
+
+      .change-communtiy-button {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 12px;
+
+        button {
+          max-width: 100px;
+        }
+      }
+
+      .default-community-select,
+      .default-block-select {
+        margin-bottom: 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .title {
+          text-align: left;
+          font-weight: 600;
+          font-size: 14px;
+          letter-spacing: 0px;
+          color: #222222;
+        }
+      }
+    }
 
     .logout {
-      padding: 12px 20px;
+      padding: 12px;
       display: flex;
       justify-content: space-between;
       align-items: center;
